@@ -10,6 +10,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -24,10 +26,7 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "target/release/discord-webhook-qotd-bot-rs,target/x86_64-pc-windows-gnu/release/discord-webhook-qotd-bot-rs.exe"
-        allowUpdates: false
+        allowUpdates: true
         artifactErrorsFailBuild: true
         generateReleaseNotes: true
-        prerelease: false
-        makeLatest: true
         name: "Release ${{ github.event.release.tag_name }}"
-        discussionCategory: "New Versions"
